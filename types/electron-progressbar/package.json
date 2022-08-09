@@ -1,6 +1,6 @@
 {
-    "private": true,
-    "dependencies": {
-        "electron": "^15.5.0"
-    }
+  "private": true,
+  "dependencies": {
+    "electron": "^15.5.0"
+  }
 }
