@@ -1,6 +1,6 @@
 {
-    "private": true,
-    "dependencies": {
-        "electron": "10.4.1"
-    }
+  "private": true,
+  "dependencies": {
+    "electron": "10.4.1"
+  }
 }
