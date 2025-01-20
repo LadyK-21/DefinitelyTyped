@@ -1,20 +1,29 @@
-import ReactDOM = require('react-dom');
-import 'react/experimental';
-import 'react-dom/experimental';
+import React = require("react");
+import ReactDOM = require("react-dom");
+import ReactDOMClient = require("react-dom/client");
+import "react/experimental";
+import "react-dom/experimental";
 
-const useFormStatus = ReactDOM.experimental_useFormStatus;
+function viewTransitionTests() {
+    const ViewTransition = React.unstable_ViewTransition;
 
-function Status() {
-    const status = useFormStatus();
-    if (!status.pending) {
-        return <div>No pending action</div>;
-    } else {
-        const { action, data, method } = status;
-        const foo = data.get('foo');
-        return (
-            <div>{`Pending action ${
-                typeof action === 'string' ? action : action.name
-            }: foo is ${foo}, method is ${method}`}</div>
-        );
-    }
+    <ViewTransition
+        ref={current => {
+            if (current !== null) {
+                // $ExpectType string
+                current.name;
+
+                // $ExpectType Animatable
+                current.group;
+                // $ExpectType Animatable
+                current.imagePair;
+                // $ExpectType Animatable
+                current.old;
+                // $ExpectType Animatable
+                current.new;
+            }
+        }}
+    >
+        <div />
+    </ViewTransition>;
 }

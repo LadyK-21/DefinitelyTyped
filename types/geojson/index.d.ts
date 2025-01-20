@@ -1,13 +1,3 @@
-// Type definitions for non-npm package geojson 7946.0
-// Project: https://geojson.org/
-// Definitions by: Jacob Bruun <https://github.com/cobster>
-//                 Arne Schubert <https://github.com/atd-schubert>
-//                 Jeff Jacobson <https://github.com/JeffJacobson>
-//                 Ilia Choly <https://github.com/icholy>
-//                 Dan Vanderkam <https://github.com/danvk>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.3
-
 // Note: as of the RFC 7946 version of GeoJSON, Coordinate Reference Systems
 // are no longer supported. (See https://tools.ietf.org/html/rfc7946#appendix-B)}
 
@@ -17,13 +7,13 @@ export as namespace GeoJSON;
  * The valid values for the "type" property of GeoJSON geometry objects.
  * https://tools.ietf.org/html/rfc7946#section-1.4
  */
-export type GeoJsonGeometryTypes = Geometry['type'];
+export type GeoJsonGeometryTypes = Geometry["type"];
 
 /**
  * The value values for the "type" property of GeoJSON Objects.
  * https://tools.ietf.org/html/rfc7946#section-1.4
  */
-export type GeoJsonTypes = GeoJSON['type'];
+export type GeoJsonTypes = GeoJSON["type"];
 
 /**
  * Bounding box
@@ -70,7 +60,10 @@ export interface GeoJsonObject {
 /**
  * Union of GeoJSON objects.
  */
-export type GeoJSON = Geometry | Feature | FeatureCollection;
+export type GeoJSON<G extends Geometry | null = Geometry, P = GeoJsonProperties> =
+    | G
+    | Feature<G, P>
+    | FeatureCollection<G, P>;
 
 /**
  * Geometry object.
@@ -84,7 +77,7 @@ export type GeometryObject = Geometry;
  * https://tools.ietf.org/html/rfc7946#section-3.1.2
  */
 export interface Point extends GeoJsonObject {
-    type: 'Point';
+    type: "Point";
     coordinates: Position;
 }
 
@@ -93,7 +86,7 @@ export interface Point extends GeoJsonObject {
  *  https://tools.ietf.org/html/rfc7946#section-3.1.3
  */
 export interface MultiPoint extends GeoJsonObject {
-    type: 'MultiPoint';
+    type: "MultiPoint";
     coordinates: Position[];
 }
 
@@ -102,7 +95,7 @@ export interface MultiPoint extends GeoJsonObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.4
  */
 export interface LineString extends GeoJsonObject {
-    type: 'LineString';
+    type: "LineString";
     coordinates: Position[];
 }
 
@@ -111,7 +104,7 @@ export interface LineString extends GeoJsonObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.5
  */
 export interface MultiLineString extends GeoJsonObject {
-    type: 'MultiLineString';
+    type: "MultiLineString";
     coordinates: Position[][];
 }
 
@@ -120,7 +113,7 @@ export interface MultiLineString extends GeoJsonObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.6
  */
 export interface Polygon extends GeoJsonObject {
-    type: 'Polygon';
+    type: "Polygon";
     coordinates: Position[][];
 }
 
@@ -129,7 +122,7 @@ export interface Polygon extends GeoJsonObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.7
  */
 export interface MultiPolygon extends GeoJsonObject {
-    type: 'MultiPolygon';
+    type: "MultiPolygon";
     coordinates: Position[][][];
 }
 
@@ -138,7 +131,7 @@ export interface MultiPolygon extends GeoJsonObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.8
  */
 export interface GeometryCollection<G extends Geometry = Geometry> extends GeoJsonObject {
-    type: 'GeometryCollection';
+    type: "GeometryCollection";
     geometries: G[];
 }
 
@@ -149,7 +142,7 @@ export type GeoJsonProperties = { [name: string]: any } | null;
  * https://tools.ietf.org/html/rfc7946#section-3.2
  */
 export interface Feature<G extends Geometry | null = Geometry, P = GeoJsonProperties> extends GeoJsonObject {
-    type: 'Feature';
+    type: "Feature";
     /**
      * The feature's geometry
      */
@@ -170,6 +163,6 @@ export interface Feature<G extends Geometry | null = Geometry, P = GeoJsonProper
  *  https://tools.ietf.org/html/rfc7946#section-3.3
  */
 export interface FeatureCollection<G extends Geometry | null = Geometry, P = GeoJsonProperties> extends GeoJsonObject {
-    type: 'FeatureCollection';
+    type: "FeatureCollection";
     features: Array<Feature<G, P>>;
 }

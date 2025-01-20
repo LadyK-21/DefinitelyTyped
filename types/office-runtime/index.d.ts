@@ -1,13 +1,3 @@
-// Type definitions for non-npm package office-runtime 1.0
-// Project: https://github.com/OfficeDev/office-js
-// Definitions by: OfficeDev <https://github.com/OfficeDev>,
-//                 David Chesnut <https://github.com/davidchesnut>,
-//                 Alex Jerabek <https://github.com/AlexJerabek>,
-//                 Ricky Kirkham <https://github.com/rick-kirkham>,
-//                 Alison McKay <https://github.com/alison-mk>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// Typescript Version: 2.4
-
 /*
 office-runtime
 Copyright (c) Microsoft Corporation
@@ -353,11 +343,15 @@ declare namespace OfficeRuntime {
      *
      * **Applications**: Excel, Outlook, PowerPoint, Word
      *
-     * **Important**: In Outlook, this API isn't supported in the following scenarios.
+     * **Important**:
      *
-     * - If the add-in is loaded in an Outlook.com or Gmail mailbox.
+     * - In Outlook, this API isn't supported if you load an add-in in an Outlook.com or Gmail mailbox.
      *
-     * - If the add-in is loaded in Outlook on the web in the Safari browser. This results in error 13001 ("The user is not signed into Office").
+     * - In Outlook on the web, this API isn't supported if you use the Safari browser. This results in error 13001 ("The user is not signed into Office").
+     *
+     * - In Outlook on the web, if you use the
+     * {@link https://learn.microsoft.com/javascript/api/office/office.ui#office-office-ui-displaydialogasync-member(1) | displayDialogAsync}
+     * method to open a dialog, you must close the dialog before you can call `getAccessToken`.
      *
      * @param options - Optional. Accepts an `AuthOptions` object to define sign-on behaviors.
      * @returns Promise to the access token.
